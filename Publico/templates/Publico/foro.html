@@ -1,0 +1,185 @@
+{% extends "Publico/plantilla.html" %}
+
+{%  load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div id="banner-area" class="banner-area" style="background-image:url(static/Publico/images/banner/banner7.jpg)">
+    <div class="banner-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner-heading">
+              <h1 class="banner-title">Foro Preguntas</h1>
+            </div>
+          </div><!-- Col end -->
+        </div><!-- Row end -->
+      </div><!-- Container end -->
+    </div><!-- Banner text end -->
+  </div><!-- Banner area end -->
+
+  <section id="main-container" class="main-container">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12 mb-5 mb-lg-0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <!-- Post comment start -->
+          <div id="comments" class="comments-area">
+            <h3 class="comments-heading">FORO DE PREGUNTAS</h3>
+
+            {% for p in pregunta %}
+            <ul class="comments-list">
+              <li>
+                <div class="comment d-flex">
+                  <img loading="lazy" class="comment-avatar" alt="author" src="{{p.imagen.url}}">
+                  <div class="comment-body">
+                    <div class="meta-data">
+                      <span class="comment-author mr-3">{{p.usuario}}</span>
+                      <span class="comment-date float-right">{{p.fecha}}</span>
+                    </div>
+                    <div class="comment-content">
+                      <p>{{p.cuerpo}}</p>
+                    </div>
+                  </div>
+                </div><!-- Comments end -->
+
+                {% for r in respuesta %}
+                {% if r %}
+                <ul class="comments-reply">
+                  <li>
+                    <div class="comment d-flex">
+                      <img loading="lazy" class="comment-avatar" alt="author" src="{{r.imagen.url}}">
+                      <div class="comment-body">
+                        <div class="meta-data">
+                          <span class="comment-author mr-3">{{r.usuario}}</span>
+                          <span class="comment-date float-right">{{r.fecha}}</span>
+                        </div>
+                        <div class="comment-content">
+                          <p>{{r.cuerpo}}
+                          </p>
+                        </div>
+
+                        <div class="vista" id="admin" style="display:none;">
+                          <div class="text-left">
+                            <a class="comment-reply font-weight-bold"  data-toggle="modal" data-target="#myModal">Editar</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- Comments end -->
+                  </li>
+                </ul><!-- comments-reply end -->
+                {% endif %}{% endfor %}
+                
+
+              </li><!-- Comments-list li end -->
+            </ul><!-- Comments-list ul end -->
+            {% endfor %}
+
+          </div><!-- Post comment end -->
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!--Formulario para preguntar-->
+          <div class="comments-form border-box">
+            <div class="vista" id="general" style="display:inline;">
+
+              <h3 class="title-normal">PREGUNTA</h3>
+
+              <form role="form">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="message" class="w-100"><textarea class="form-control required-field" id="message"
+                          placeholder="Escribe tu pregunta" rows="10" required></textarea></label>
+                    </div>
+                  </div><!-- Col 12 end -->
+
+                  <div class="col-md-6">
+                    <div class="vista" id="general" style="display: inline;">
+                      <div class="form-group">
+                        <label for="name" class="w-100"><input class="form-control" name="name" id="name"
+                            placeholder="Nombre (solo para usuarios no registrados)" type="text" required></label>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="vista" id="general" style="display: inline;">
+                      <div class="form-group">
+                        <label for="email" class="w-100"><input class="form-control" name="email" id="email"
+                            placeholder="Email (solo para usuarios no registrados)" type="email" required></label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div><!-- Form row end -->
+                <div class="clearfix">
+                  <button class="btn btn-primary" type="submit" aria-label="post-comment">Enviar</button>
+                </div>
+              </form><!-- Form end -->
+            </div>
+          </div><!-- Comments form end -->
+          <div class="comments-form border-box">
+            <div class="vista" id="registrado" style="display:none;">
+              <h3 class="title-normal">PREGUNTA</h3>
+              <form role="form">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="message" class="w-100"><textarea class="form-control required-field" id="message"
+                          placeholder="Escribe tu pregunta" rows="10" required></textarea></label>
+                    </div>
+                  </div><!-- Col 12 end -->
+
+                </div><!-- Form row end -->
+                <div class="clearfix">
+                  <button class="btn btn-primary" type="submit" aria-label="post-comment">Enviar</button>
+                </div>
+              </form><!-- Form end -->
+            </div>
+          </div><!-- Comments form end -->
+
+        </div><!-- Content Col end -->
+
+      </div><!-- Main row end -->
+
+    </div><!-- Conatiner end -->
+  </section><!-- Main container end -->
+{%  endblock %}

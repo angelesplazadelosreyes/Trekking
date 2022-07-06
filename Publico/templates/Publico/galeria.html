@@ -1,0 +1,68 @@
+{% extends "Publico/plantilla.html" %}
+
+{%  load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div id="banner-area" class="banner-area" style="background-image:url(static/Publico/images/banner/banner4.jpg)">
+  <div class="banner-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="banner-heading">
+            <h1 class="banner-title">Galería</h1>
+          </div>
+        </div><!-- Col end -->
+      </div><!-- Row end -->
+    </div><!-- Container end -->
+  </div><!-- Banner text end -->
+</div><!-- Banner area end -->
+
+<section id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="row shuffle-wrapper">
+          <div class="col-1 shuffle-sizer"></div>
+
+          {% for imagen in images %}
+
+          <div class="col-lg-4 col-md-6 shuffle-item" >
+            <div class="project-img-container">
+              <a class="gallery-popup" href="{{ imagen.imagen.url }}" >
+                <img class="img-fluid" src="{{ imagen.imagen.url }}" alt="imagen-galeria">
+              </a>
+              <div class="project-item-info">
+                <div class="project-item-info-content">
+                  <h3 class="project-item-title" >
+                    <a href="#" data-toggle="modal" data-target="#id{{ forloop.counter }}">{{imagen.titulo}}</a>
+                  </h3>
+                  <p class="project-cat">{{imagen.fecha}}</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- shuffle item end -->
+
+          <!-- Modal para card-->
+          <div class="modal fade" id="id{{ forloop.counter }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <button type="button" class="close mr-4" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <img src="{{ imagen.imagen.url }}" alt="" class="img-fluid rounded">
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div><!-- shuffle end -->
+
+        </div><!-- shuffle end -->
+
+      </div>
+  </div><!-- Content row end -->    
+</section><!-- Main container end -->
+ 
+{%  endblock %}
